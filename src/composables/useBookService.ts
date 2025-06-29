@@ -14,21 +14,15 @@ export function useBookService() {
         return ApiClient.getRequest<Book[]>(serviceRoute);
     }
 
-    // try {
-    //     isLoading.value = true;
-    //     loadBooks().then((books) => {
-    //         loadedBooks.value = books;
-    //     });
-    // } catch (error: any) {
-    //     error.value = error;
-    //     console.log(error);
+    // Utilise le this du service/composable, est-ce vraiment utile dans le contexte ?
+    // function fetchBooks2(): Promise<Book[]> {
+    //     return ApiClient.getRequest<Book[]>(serviceRoute);
     // }
-    // isLoading.value = false;
 
     try {
         isLoading.value = true;
-        fetchBooks().then((books: Book[]) => {
-            books.value = books;
+        fetchBooks().then((booksLoad: Book[]) => {
+            books.value = booksLoad;
         });
     } catch (error: any) {
         error.value = error;
@@ -37,11 +31,9 @@ export function useBookService() {
         isLoading.value = false;
     }
 
-
-
     return {
         isLoading,
         error,
-        // loadedBooks
+        books,
     }
 }
