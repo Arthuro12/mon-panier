@@ -1,29 +1,20 @@
 <script setup lang="ts">
-import BookForm from "./components/forms/BookForm.vue";
-import AllBooks from "./components/AllBooks.vue";
-
-import { useLoadBooks } from "./composables/useLoadBooks.js";
-
-const { isLoading, error, loadedBooks } = useLoadBooks();
 </script>
 
 <template>
-  <main>
-    <div v-show="error">Une erreur s´est produite lors du chargements de vos livres: {{ error }}</div>
-    <div>
-        <AllBooks class="book-list" v-if="!isLoading" :books="loadedBooks" />
-        <BookForm  />
-    </div>
-  </main>
+  <nav>
+      <RouterLink class="action" to="/">Page principale</RouterLink>
+      <RouterLink class="action" to="/lab">Allez au labo</RouterLink>
+      <RouterView />
+  </nav>
 </template>
 
 <style scoped>
-main {
-  margin: auto;
-  width: 80%;
+.action {
+  margin-right: 15px;
 }
 
-.book-list {
-  margin-bottom: 15px;
-}
+nav {
+  margin-top: 20px;
+} 
 </style>
